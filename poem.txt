@@ -1,0 +1,33 @@
+Verse 1:
+I'm a Rust programmer, code is my game
+Got my hoodie on, and my mind's in the zone
+I write my code, with ownership and borrowing
+My performance is mean, my code's never borrowing
+I'm a gangsta in the code, my code's never slow
+My Rust is my weapon, my code's never low
+
+Chorus:
+Rust in my veins, code in my brain
+I'm a gangsta in the code, my code's never lame
+Rust in my veins, code in my brain
+I'm a gangsta in the code, my code's never the same
+
+Verse 2:
+I'm a Rust programmer, my code's never weak
+My syntax is clean, my code's never bleak
+I'm a gangsta in the code, my code's never fake
+My code's always real, my code's never late
+I'm a Rust programmer, my code's never wrong
+My code's always strong, my code's never gone
+
+Chorus:
+Rust in my veins, code in my brain
+I'm a gangsta in the code, my code's never lame
+Rust in my veins, code in my brain
+I'm a gangsta in the code, my code's never the same
+
+Outro:
+I'm a Rust programmer, my code's never slow
+My code's always fast, my code's never low
+I'm a gangsta in the code, my code's never weak
+My code's always strong, my code's never bleak.
