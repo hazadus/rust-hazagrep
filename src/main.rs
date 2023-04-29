@@ -3,21 +3,26 @@ use std::fs;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let (query, file_path) = parse_config(&args);
+    let config = parse_config(&args);
 
     println!("hazagrep running");
-    println!("Searching for '{}' in file '{}'", query, file_path);
+    println!("Searching for '{}' in file '{}'", config.query, config.file_path);
 
-    let contents = fs::read_to_string(file_path)
+    let contents = fs::read_to_string(config.file_path)
         .expect("Should have been able to reaf the file.");
 
     println!("\nFile content:\n\n{contents}");
 }
 
-fn parse_config(args: &[String]) -> (&str, &str) {
-    // Get parameters from command line.
-    let query = &args[1];
-    let file_path = &args[2];
+struct Config {
+    query: String,
+    file_path: String,
+}
 
-    (query, file_path)
+fn parse_config(args: &[String]) -> Config {
+    // Extract parameters from command line.
+    let query = args[1].clone();
+    let file_path = args[2].clone();
+
+    Config { query, file_path }
 }
