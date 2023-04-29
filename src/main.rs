@@ -22,6 +22,10 @@ struct Config {
 impl Config {
     fn new(args: &[String]) -> Config {
         // Extract parameters from command line.
+        if args.len() < 3 {
+            panic!("Not enough arguments!")
+        }
+
         let query = args[1].clone();
         let file_path = args[2].clone();
     
