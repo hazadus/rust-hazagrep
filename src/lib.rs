@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, result};
 use std::error::Error;
 
 pub struct Config {
@@ -23,7 +23,9 @@ impl Config {
 pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
   let contents = fs::read_to_string(config.file_path)?;
 
-  println!("\nFile content:\n\n{contents}");
+  for line in search(&config.query, &contents) {
+    println!("{line}");
+  }
 
   Ok(())
 }
@@ -33,8 +35,16 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
 // vector should contain string slices of `contents`. In other words, we tell
 // Rust that the data returned by the `search` function will live as long as
 // the data in the `contents` argument.
-pub fn search<'a>(_query: &str, _contents: &'a str) -> Vec<&'a str> {
-  vec![]
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+  let mut results = Vec::new();
+
+  for line in contents.lines() {
+    if line.contains(query) {
+      results.push(line);
+    }
+  }
+
+  results
 }
 
 #[cfg(test)]
