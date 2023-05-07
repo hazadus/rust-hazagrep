@@ -66,29 +66,24 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
 // vector should contain string slices of `contents`. In other words, we tell
 // Rust that the data returned by the `search` function will live as long as
 // the data in the `contents` argument.
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-  let mut results = Vec::new();
-
-  for line in contents.lines() {
-    if line.contains(query) {
-      results.push(line);
-    }
-  }
-
-  results
+pub fn search<'a>(
+  query: &str,
+  contents: &'a str
+) -> Vec<&'a str> {
+    contents
+      .lines()
+      .filter(|line| line.contains(query))
+      .collect()
 }
 
-pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-  let query = query.to_lowercase();
-  let mut results = Vec::new();
-
-  for line in contents.lines() {
-    if line.to_lowercase().contains(&query) {
-      results.push(line);
-    }
-  }
-
-  results
+pub fn search_case_insensitive<'a>(
+  query: &str,
+  contents: &'a str
+) -> Vec<&'a str> {
+  contents
+    .lines()
+    .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
+    .collect()
 }
 
 #[cfg(test)]
