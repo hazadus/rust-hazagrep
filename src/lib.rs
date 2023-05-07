@@ -9,14 +9,28 @@ pub struct Config {
 }
 
 impl Config {
-  pub fn build(args: &[String]) -> Result<Config, &'static str> {
-      // Extract parameters from command line.
-      if args.len() < 3 {
-          return Err("not enough arguments!")
-      }
+  // This usage of the impl Trait syntax we discussed in the “Traits as Parameters”
+  // section of Chapter 10 means that args can be any type that implements the
+  // Iterator type and returns String items.
+  //
+  // Because we’re taking ownership of args and we’ll be mutating args by iterating
+  // over it, we can add the mut keyword into the specification of the args parameter
+  // to make it mutable.
+  pub fn build(
+    mut args: impl Iterator<Item = String>,
+  ) -> Result<Config, &'static str> {
+      // First agrument is program's name, we want to skip it
+      args.next();
 
-      let query = args[1].clone();
-      let file_path = args[2].clone();
+      let query = match args.next() {
+        Some(arg) => arg,
+        None => return Err("Did't get a query string"),
+      };
+
+      let file_path = match args.next() {
+        Some(arg) => arg,
+        None => return Err("Did't get a file path"),
+      };
 
       // We don’t care about the value of the environment variable, 
       // just whether it’s set or unset, so we’re checking is_ok
